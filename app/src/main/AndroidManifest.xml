@@ -15,15 +15,16 @@
         <activity android:name=".BrowserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/html" android:scheme="https" />
+                <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <data android:scheme="https"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data  android:scheme="https" android:host="temple.edu"/>
             </intent-filter>
         </activity>
     </application>
