@@ -54,7 +54,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
             String shareString = pagerFragment.getCurrentUrl();
             intent.setType("text/plain");
             intent.putExtra(android.content.Intent.EXTRA_TEXT, shareString);
-            startActivity(Intent.createChooser(intent, "share the current url"));
+            startActivity(Intent.createChooser(intent, "Share URL!"));
         }
         return true;
     }
