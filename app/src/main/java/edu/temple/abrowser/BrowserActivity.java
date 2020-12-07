@@ -7,10 +7,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Set;
 
 import edu.temple.abrowser.bookmarks.Bookmark;
 import edu.temple.abrowser.bookmarks.BookmarkList;
@@ -34,14 +41,44 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
     boolean listMode;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.share){
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            String shareString = pagerFragment.getCurrentUrl();
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, shareString);
+            startActivity(Intent.createChooser(intent, "share the current url"));
+        }
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        Set<String> Category = intent.getCategories();
+        Uri data = intent.getData();
+
+
 
         if (savedInstanceState != null)
             pages = (ArrayList) savedInstanceState.getSerializable(PAGES_KEY);
         else
             pages = new ArrayList<>();
+
+        if(Intent.ACTION_VIEW.equals(action) && data!=null){
+            pages.add(PageViewerFragment.newInstance(data.toString()));
+        }
 
         fm = getSupportFragmentManager();
 
