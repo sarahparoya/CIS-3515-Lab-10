@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ABrowser</string>
+    <string name="url">Enter your URL</string>
+    <string name="page_control_back">Back</string>
+    <string name="page_control_forward">Forward</string>
+    <string name="page_control_go">Go</string>
+    <string name="bookmark_saved_message">Bookmark Saved</string>
+    <string name="delete_bookmark_confirmation">Delete %1$s?</string>
+    <string name="bookmarks_close_window">Close</string>
+</resources>
