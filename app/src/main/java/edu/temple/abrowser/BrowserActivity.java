@@ -71,6 +71,7 @@ public class BrowserActivity extends AppCompatActivity implements PageControlFra
 
 
 
+
         if (savedInstanceState != null)
             pages = (ArrayList) savedInstanceState.getSerializable(PAGES_KEY);
         else
